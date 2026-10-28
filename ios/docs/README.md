@@ -2,7 +2,7 @@
 
 ## 工具与环境入口
 
-- [Codex 与 Xcode 官方工具配置](codex-setup.md)：Apple skills 导出、官方 MCP 接入、安装验证与故障处理。
+- [iOS 开发环境与 Codex 工具配置](codex-setup.md)：Xcode、Swift、Simulator、Apple skills 和 Xcode MCP 的手动配置与验证。
 
 ## 内容职责
 

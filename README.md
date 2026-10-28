@@ -8,6 +8,8 @@
 
 已有实践涉及实时数据与共享订阅、请求竞争与迟到结果、复杂导航和表单状态保留、K 线视口与高频更新、跨语言调用与资源所有权，以及缓存隔离、启动和构建发布。这些经历提供问题认识、工程约束和设计判断，原生实现与运行证据随本项目的学习逐步形成。
 
+已有原生实践随实际需求穿插开展。本次系统学习 Swift、Kotlin 的语言、标准库与运行机制，并在客户端场景中建立和验证理解。
+
 每个主题仍需完整交代背景、问题、错误行为与预期结果，再建立当前平台的机制解释。问题和业务要求可以相近，语言、内存、任务、UI 与宿主生命周期的语义需要分别说明和核验。已有经验帮助确定起点和重点，讲解深度由理解问题所需的内容决定。
 
 必要背景直接描述在本项目中，各篇核心正文能够独立恢复主要理解，工程文档提供具体实现和验证入口。
@@ -38,6 +40,7 @@ native-clients/
 ├── android/                   # Kotlin + Compose 应用工程
 │   └── docs/
 └── shared/
+    ├── docs/                  # 共用工具的安装与配置说明
     └── services/              # 共用 Node mock 服务
         ├── src/
         ├── fixtures/
@@ -54,7 +57,7 @@ native-clients/
 | [kotlin-core](kotlin-core/README.md) | 独立 Kotlin/JVM 语言学习与机制实验 |
 | [ios](ios/README.md) | Swift + SwiftUI 应用工程及具体实现文档 |
 | [android](android/README.md) | Kotlin + Compose 应用工程及具体实现文档 |
-| [shared](shared/README.md) | 双端共用的模拟服务与场景基础 |
+| [shared](shared/README.md) | 双端共用的工具配置、模拟服务与场景基础 |
 
 ## 推进方式
 

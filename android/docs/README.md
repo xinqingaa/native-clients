@@ -2,7 +2,7 @@
 
 ## 工具与环境入口
 
-- [Codex 与 Android 官方 skills 配置](codex-setup.md)：官方插件安装、验证、使用边界与移除。
+- [Android 开发环境与 Codex 工具配置](codex-setup.md)：Studio、JDK、SDK、Emulator、官方 skills 插件与可选 IDE MCP 的手动配置。
 
 ## 内容职责
 
