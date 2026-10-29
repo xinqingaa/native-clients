@@ -1,12 +1,17 @@
 # EngineeringLab｜工程基础实验
 
-本实验为 [iOS 01 核心正文](../../docs/ios/01-engineering-foundations.md)提供可以打开、修改、构建和调试的具体工程。它回答当前应用如何接入一个本地模块、怎样读取配置与资源，以及如何用构建日志和断点核对执行过程。
+本实验为 [iOS 01 核心正文](../../docs/ios/01-engineering-foundations.md)提供可以打开、修改、构建和调试的具体工程。它回答当前应用如何接入一个本地模块、怎样读取配置与资源，以及如何用构建日志和断点核对执行过程。第一次接触 Xcode 时，先完成 [iOS 工程入门](project-started.md)，再回到本实验。
 
 场景刻意保持简单：应用显示编译分支、业务环境和包内文本。点击“生成学习摘要”后，应用把 `completed = 3`、`total = 6` 交给本地库，预期显示“已完成 3 / 6，剩余 3”。这里没有网络请求、持久化或后台任务；这些机制尚不属于本实验。
 
 ## 从哪里开始
 
-建议依次完成六个单元，每个单元先预测、再操作、最后解释观察。操作依赖已有工程，学习者可以逐项重复，无需一次阅读全部构建输出。
+有两条入口：
+
+- **第一次接触 iOS 工程**：先按 [iOS 工程入门](project-started.md)创建并运行一个最小 SwiftUI App，再打开本工程。
+- **已经熟悉 Xcode**：直接打开 `ios/EngineeringLab/EngineeringLab.xcodeproj`，从“工程结构与输入归属”开始。
+
+建议依次完成下面六个单元，每个单元先预测、再操作、最后解释观察。不要一次阅读全部构建输出；先建立正常运行基线，再只改变一个输入。
 
 | 单元 | 阅读与操作 | 需要解释的结果 |
 | --- | --- | --- |
@@ -16,6 +21,8 @@
 | 4. 模块 | 打开 Package.swift，追踪按钮到库函数 | product、target、module 与 public API 如何衔接 |
 | 5. 配置与增量 | 对比 Debug／Release；改变一个构建输入 | 编译条件和业务环境怎样分别进入产物，哪些任务重做 |
 | 6. 调试与失败 | 设断点检查参数，复现并恢复小故障 | 从哪个阶段、哪条证据开始定位 |
+
+第一次运行只需要完成单元 1～3；本地模块、配置、增量和故障练习可以在基线成功后继续。
 
 ## 环境与前提
 
@@ -54,6 +61,8 @@ xcodebuild -downloadPlatform iOS -buildVersion 27.1 -architectureVariant arm64
 
 命令按本机 `xcodebuild -help` 核对。此处选择 arm64 对应当前 Apple silicon Mac；不假定其他平台、其他 Xcode 版本支持完全相同选项。下载完成不等于已创建和启动模拟器，应重新检查 runtime 与设备列表。
 
+当前版本表记录的是一次实际验证环境，不要求学习者先复制全部版本。首次运行只需确认 Xcode 可打开工程，并在 Destination 中找到一台与 deployment target 兼容的 Simulator；版本、SDK 和 runtime 的关系再结合 [iOS 01 的版本章节](../../docs/ios/01-engineering-foundations.md#版本如何限制能否运行)理解。
+
 ## 工程结构与输入归属
 
 ```text
@@ -90,6 +99,17 @@ ios/
 
 `summary` 在视图的状态存储中保留，本例没有把它放进 Package 全局变量。库函数只消费参数并返回 String；它要求 `total > 0` 且 `0 <= completed <= total`，用 precondition 表达示例的程序约束。用户输入校验与可恢复业务错误不应直接照搬为崩溃，本例没有开放任意用户输入。
 
+在 Xcode 中阅读这个工程时，可以按以下顺序操作：
+
+1. 在 Project Navigator 点击蓝色项目图标，确认 project 和 `EngineeringLab` target。
+2. 点击 `EngineeringLabApp.swift`，先看 `@main`、`WindowGroup` 和 `ContentView()`。
+3. 点击 `ContentView.swift`，沿按钮闭包追踪 `LessonSummary.make` 的调用。
+4. 点击 `BuildIdentity.swift`，查看 `#if DEBUG`、`Bundle.main` 和资源读取。
+5. 选中 `Info.plist` 和 `LessonNote.txt`，在右侧 Inspector 确认它们属于当前应用输入。
+6. 打开 `Packages/BuildLessonKit/Package.swift` 和 `LessonSummary.swift`，对照 product、target、module 和 `public`。
+
+左侧文件树只说明如何组织和引用文件；是否参与当前 target，还要结合 target membership、同步 group、Package 关联和实际构建日志判断。
+
 ## 打开、构建与运行
 
 在 Xcode 使用 File → Open，选择 `ios/EngineeringLab/EngineeringLab.xcodeproj`。确认顶部 Active Scheme 为 EngineeringLab，目的地选择一台具体 iPhone Simulator。菜单名称以 Xcode 27.1 实际界面为准。
@@ -97,6 +117,8 @@ ios/
 首次通过 MCP 打开工程时，需要区分全局服务启用与当前 agent 的项目授权。当前会话已成功创建、打开并查询工程；后续新会话仍应以实际调用结果为准。界面窗口与后台打开可能同时产生两个 workspace identifier，应使用当前窗口对应的 identifier，不能把它们写死进长期脚本。
 
 点击 Run 或使用 Product → Run。正常预期是显示“工程基础实验”，编译条件为 Debug，业务环境为 local，资源段显示来自 LessonNote.txt 的文字。此时摘要为“尚未生成”；点击按钮后才出现计算结果。
+
+第一次使用 Xcode 时，按“左侧找文件、顶部选 Scheme 和 Destination、中间编辑、右侧查属性、底部看调试信息”的顺序操作。Report navigator 用于查看构建报告；Debug area 用于查看断点暂停后的变量、调用栈和控制台。Run 成功后先观察页面，再点击按钮，最后再进入构建日志和断点实验。
 
 从仓库根目录也可以构建，构建产物放入已忽略的 `ios/DerivedData`：
 
