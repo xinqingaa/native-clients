@@ -140,7 +140,9 @@ xcrun mcp-server status
 
 早期配置记录报告过 Apple skills 导出与迁移、MCP 工具发现，工程访问当时尚未通过授权。后续审阅的可见环境未复现相同安装状态，因此这些记录保留为版本参考，当前可用性按本文步骤重新验收。
 
-本轮已检查 `xcodebuild -version`、`xcrun --find mcpbridge`、skills 导出与桥接器的 `--help`，未执行安装、导出或 MCP 配置修改。本仓库尚无 Swift Package 或 iOS 应用工程，构建、测试、预览和设备行为未验证。
+2026-10-28 的工具准备已检查 `xcodebuild -version`、`xcrun --find mcpbridge`、skills 导出与桥接器的 `--help`，未执行安装、导出或 MCP 配置修改。该次工具准备尚未验证工程构建、测试、预览和设备行为。
+
+2026-10-29 开始 iOS 01 学习后，已通过 Xcode MCP 建立 EngineeringLab、打开并查询工程，接入本地 Swift Package，并开展构建和模拟器调试。当前工程验证范围、截图和 runtime 状态统一见 [工程基础实验](engineering-foundations.md#实际验证与限制)，不将它扩展为所有 MCP 工具、测试或真机能力均已验证。
 
 ## 官方参考
 

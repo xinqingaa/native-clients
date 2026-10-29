@@ -16,7 +16,7 @@
 
 ## 目录结构
 
-主要目录如下，各目录通过自身的 README 提供入口。工程配置、源码和测试随对应主题逐步建立。
+主要目录如下，各目录通过自身的 README 提供入口。工程配置、源码和测试随对应主题逐步建立；当前 iOS 01 已有 [EngineeringLab 工程基础实验](ios/docs/engineering-foundations.md)。
 
 ```text
 native-clients/

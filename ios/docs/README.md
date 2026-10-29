@@ -4,6 +4,10 @@
 
 - [iOS 开发环境与 Codex 工具配置](codex-setup.md)：Xcode、Swift、Simulator、Apple skills 和 Xcode MCP 的手动配置与验证。
 
+## 当前实验
+
+- [EngineeringLab｜工程基础实验](engineering-foundations.md)：对照 iOS 01，建立工程模型、构建运行、本地依赖、配置、增量与调试的操作依据。
+
 ## 内容职责
 
 维护当前 iOS 应用的具体实现与操作说明，按实际需要补充工程运行、依赖配置、状态与导航、数据层、系统接入、性能实验、测试与打包。
