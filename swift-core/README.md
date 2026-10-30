@@ -1,10 +1,11 @@
 # Swift Core
 
-独立 Swift 语言学习与机制实验目录，以 Swift Package 组织可运行示例和必要测试。
+以 Swift Package 组织独立语言学习与机制实验，不承担 iOS App 生命周期。
 
-- [Swift 01｜独立工程与最小实验](docs/01-project-and-run.md)：认识 `Package.swift`、源码 target、测试 target，并运行第一个实验。
+- [Swift 基础类型、函数与控制流](docs/02-basics-and-functions.md)：首次语言学习入口，运行 `swift run --package-path swift-core BasicsDemo`。
+- [独立工程与最小实验](docs/01-project-and-run.md)：需要时了解 Package、源码 target 和测试 target。
 - [Sources](Sources/README.md)：语言示例与独立实验。
-- [Tests](Tests/README.md)：语言语义与实验行为的必要验证。
-- [docs](docs/README.md)：语法、标准库、实验说明与运行方法。
+- [Tests](Tests/README.md)：关键行为的必要验证。
+- [docs](docs/README.md)：语言学习顺序与现有内容。
 
-面向客户端的运行时与架构解释统一连接到 [iOS 核心正文](../docs/ios/README.md)。
+Swift 语言特性、运行时与并发的知识结构及机制正文见 [iOS 01](../docs/ios/01-language-runtime-concurrency.md)。Xcode 的 App 操作统一使用 [EngineeringLab 教程](../ios/docs/project-started.md)。

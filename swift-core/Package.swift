@@ -8,6 +8,10 @@ let package = Package(
     ],
     targets: [
         .target(name: "SwiftCore"),
-        .testTarget(name: "SwiftCoreTests", dependencies: ["SwiftCore"])
+        .testTarget(name: "SwiftCoreTests", dependencies: ["SwiftCore"]),
+        .executableTarget(name: "BasicsDemo", dependencies: ["SwiftCore"]),
+        .executableTarget(name: "LanguageFeaturesDemo"),
+        .executableTarget(name: "ConcurrencyDemo"),
+        .executableTarget(name: "RunLoopDemo")
     ]
 )

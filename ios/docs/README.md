@@ -2,20 +2,22 @@
 
 ## 工具与环境入口
 
-- [iOS 开发环境与 Codex 工具配置](codex-setup.md)：Xcode、Swift、Simulator、Apple skills 和 Xcode MCP 的手动配置与验证。
+- [iOS 开发环境与 Codex 工具配置](codex-setup.md)：Xcode、Swift、Simulator 和工具连接的手动配置与验证。
 
-## 入门入口
+## 日常学习入口
 
-- [iOS 工程入门](project-started.md)：创建、阅读、运行第一个 SwiftUI App，认识 Xcode 窗口、入口文件、Simulator 和断点。
+- [Xcode 使用与调试：EngineeringLab](project-started.md)：直接打开现有工程，认识窗口、运行、Preview、控制台、构建报告、断点、单步和配置切换。全程使用同一个 App。
+- [iOS 01：Swift 语言与运行机制](../../docs/ios/01-language-runtime-concurrency.md)：类型、空安全、内存、同步异步、线程、事件循环与并发；具体写法见 swift-core。
+- [Swift 基础实验](../../swift-core/docs/02-basics-and-functions.md)：在独立程序中练习具体语法。
 
-## 当前实验
+## 工程基础实验
 
-- [EngineeringLab｜工程基础实验](engineering-foundations.md)：在仓库工程中对照 iOS 01，验证工程模型、构建运行、本地依赖、配置、增量与调试。
+- [EngineeringLab｜工程基础实验](engineering-foundations.md)：配合 [iOS 07](../../docs/ios/07-engineering-foundations.md)检查工程模型、依赖、资源、配置、增量与故障。日志和断点的通用操作只在 Xcode 教程维护。
 
 ## 内容职责
 
-维护当前 iOS 应用的具体实现与操作说明，按实际需要补充工程运行、依赖配置、状态与导航、数据层、系统接入、性能实验、测试与打包。入门文档负责创建和首次运行，核心正文负责机制，实验文档负责当前仓库工程的复现和证据。
+本目录维护当前 iOS 应用的对象与接口设计、封装、配置、操作与真实验证。平台机制与判断归核心正文，系统语言写法归 Swift 文档；各篇保留理解当前内容所需的局部解释，通过链接衔接。
 
-从当前场景、错误行为与预期结果出发，说明应用如何落实方案：状态与任务由谁持有、对象与接口怎样组织、采用什么作用域、资源何时暂停或结束，以及当前选择的理由和代价。
+从当前场景、错误行为和预期结果出发，说明应用怎样落实方案。后续按实际问题补充状态、导航、数据、系统接入、性能、测试与交付，不由现有实验的功能列表决定核心知识结构。
 
-文档关联实际源码和验证入口，记录版本与配置条件、具体封装和参数、复现步骤、实际测试与观察结果。解释当前实现所需的局部原理保留在本篇，平台机制与架构判断见 [iOS 核心正文](../../docs/ios/README.md)，语言语法与独立实验见 [Swift 文档](../../swift-core/docs/README.md)。
+构建、模拟器运行、真机行为与学习掌握分别记录，不把操作说明或截图存在视为全部验证通过。

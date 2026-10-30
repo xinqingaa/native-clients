@@ -1,6 +1,6 @@
 # EngineeringLab｜工程基础实验
 
-本实验为 [iOS 01 核心正文](../../docs/ios/01-engineering-foundations.md)提供可以打开、修改、构建和调试的具体工程。它回答当前应用如何接入一个本地模块、怎样读取配置与资源，以及如何用构建日志和断点核对执行过程。第一次接触 Xcode 时，先完成 [iOS 工程入门](project-started.md)，再回到本实验。
+本实验为 [iOS 07 核心正文](../../docs/ios/07-engineering-foundations.md)提供可以打开、修改、构建和调试的具体工程。它回答当前应用如何接入一个本地模块、怎样读取配置与资源，以及如何用构建日志和断点核对执行过程。日常窗口、日志、断点和配置切换统一见 [Xcode 使用与调试](project-started.md)；这里专注工具链实验，不作为语言学习的起点。
 
 场景刻意保持简单：应用显示编译分支、业务环境和包内文本。点击“生成学习摘要”后，应用把 `completed = 3`、`total = 6` 交给本地库，预期显示“已完成 3 / 6，剩余 3”。这里没有网络请求、持久化或后台任务；这些机制尚不属于本实验。
 
@@ -8,7 +8,7 @@
 
 有两条入口：
 
-- **第一次接触 iOS 工程**：先按 [iOS 工程入门](project-started.md)创建并运行一个最小 SwiftUI App，再打开本工程。
+- **第一次接触 iOS 工程**：直接按 [Xcode 使用与调试](project-started.md)打开本工程，完成基本运行和调试。
 - **已经熟悉 Xcode**：直接打开 `ios/EngineeringLab/EngineeringLab.xcodeproj`，从“工程结构与输入归属”开始。
 
 建议依次完成下面六个单元，每个单元先预测、再操作、最后解释观察。不要一次阅读全部构建输出；先建立正常运行基线，再只改变一个输入。
@@ -61,7 +61,7 @@ xcodebuild -downloadPlatform iOS -buildVersion 27.1 -architectureVariant arm64
 
 命令按本机 `xcodebuild -help` 核对。此处选择 arm64 对应当前 Apple silicon Mac；不假定其他平台、其他 Xcode 版本支持完全相同选项。下载完成不等于已创建和启动模拟器，应重新检查 runtime 与设备列表。
 
-当前版本表记录的是一次实际验证环境，不要求学习者先复制全部版本。首次运行只需确认 Xcode 可打开工程，并在 Destination 中找到一台与 deployment target 兼容的 Simulator；版本、SDK 和 runtime 的关系再结合 [iOS 01 的版本章节](../../docs/ios/01-engineering-foundations.md#版本如何限制能否运行)理解。
+当前版本表记录的是一次实际验证环境，不要求学习者先复制全部版本。首次运行只需确认 Xcode 可打开工程，并在 Destination 中找到一台与 deployment target 兼容的 Simulator；版本、SDK 和 runtime 的关系再结合 [iOS 07 的版本章节](../../docs/ios/07-engineering-foundations.md#版本如何限制能否运行)理解。
 
 ## 工程结构与输入归属
 
@@ -170,7 +170,7 @@ cat ios/DerivedData/Build/Products/Debug-iphonesimulator/EngineeringLab.app/Less
 
 ### Debug 与 Release
 
-在 scheme 的 Run → Info 中检查 Build Configuration。也可把构建命令中的 `-configuration Debug` 改为 `Release`，生成独立目录中的 Release 产物；CLI 构建配置不会自动修改 Xcode 的 Run 动作。
+通过 [教程的配置切换步骤](project-started.md#切换-debugrelease-与认识归档)打开 scheme 的 Run → Info，检查 Build Configuration。也可把构建命令中的 `-configuration Debug` 改为 `Release`，生成独立目录中的 Release 产物；CLI 构建配置不会自动修改 Xcode 的 Run 动作。
 
 `BuildIdentity.compilation` 由 `#if DEBUG` 选择，业务环境来自 Info.plist。预期 Release 不保留 Debug 分支，而 `LabEnvironment` 仍为 local。若想在界面观察 Release，需要明确让 Run 使用 Release 或安装对应产物，不能仅凭 Release 构建成功就声称已看到画面。
 
@@ -192,28 +192,11 @@ cat ios/DerivedData/Build/Products/Debug-iphonesimulator/EngineeringLab.app/Less
 
 把包函数中的“剩余”改成其他文字，预期需要重编译受影响代码并形成新的链接产物。改变编译条件或其他构建设置则可能扩大失效范围；是否重做由具体输入依赖决定。练习后恢复源码，并重复正常构建。本轮不据此宣称构建速度改善。
 
-## 用断点追踪按钮调用
+## 用调试证据核对调用
 
-在 `LessonSummary.make` 内设置断点，推荐先停在 precondition 或 `let remaining` 所在行。以附加调试器的 Run 启动，点击按钮；断点命中后检查参数，再单步执行计算，检查 remaining。不同 Xcode／优化设置下，具体可停位置可能不同。
+按钮、库函数、变量与日志的完整操作只维护在 [Xcode 调试教程](project-started.md#第一次断点确认按钮执行)。本实验关注其证据含义：应用成功构建后，仍需实际点击按钮，确认执行进入关联的本地库，并把返回值交给页面。
 
-LLDB 控制台可使用：
-
-```text
-process status
-frame variable completed total
-thread step-over
-frame variable remaining
-bt 8
-continue
-```
-
-先确认进程处于暂停状态，再求值或查看当前栈帧变量。`bt` 检查库函数和应用调用闭包的关系。单步可能停在运行库或改变当前 frame，不能在其他栈帧直接假定局部变量存在。结束后移除本次实验断点，恢复执行或停止应用。
-
-下图是本次实际命中的 Xcode 断点，停止在返回语句前：计算已完成，变量区显示 completed、total 和 remaining；右侧控制台显示调用栈。
-
-![Xcode 断点、局部变量与调用栈](images/xcode-breakpoint.jpg)
-
-如果 DeviceInteraction 工具拒绝旧 Simulator，不应把这一错误当成应用代码不兼容。当前 Xcode 27.1 的该工具要求 iOS Simulator 27.0+；CLI 构建、普通 Run、调试和设备交互服务需要分别记录结果。
+历史断点结果见下方实际验证表，新的运行与单步观察见 [教程的验证记录](project-started.md#实际验证与限制)。如果设备交互服务拒绝某个 runtime，应区分工具限制与应用兼容性，不能由自动交互失败直接推断 App 不能运行。
 
 ## 可恢复的故障练习
 
@@ -262,15 +245,15 @@ xcrun clang "$lesson_tmp/missing.o" -o "$lesson_tmp/missing"
 
 构建日志还出现 App Intents 元数据提取跳过的提示：当前应用没有 AppIntents.framework 依赖，未实现 App Intents，本轮构建仍成功。未把这一提示计作编译错误或已验证 App Intents。
 
-尚未执行资源缺失和 precondition 失败的应用运行实验，也未验证远程依赖、二进制依赖、真机签名、归档、性能、自动化测试或 Preview。故障练习表中这些项目是待学习者按需开展的设计，不列为通过。
+截至 2026-10-29 的本表未覆盖资源缺失和 precondition 失败的应用运行实验，也未验证远程依赖、二进制依赖、真机签名、归档、性能、自动化测试或 Preview。2026-10-30 的日常调试与预览观察单独记录在 [Xcode 教程](project-started.md#实际验证与限制)。故障练习表中这些项目是待学习者按需开展的设计，不列为通过。
 
-用户授权的 iOS 27.1 runtime 仍在下载，尚未把下载开始当作安装完成；新系统运行与 MCP 设备交互检查待安装后补充。已完成的 iOS 18.6 观察不能替代该项。
+2026-10-29 记录时，用户授权的 iOS 27.1 runtime 尚在下载；这是当日状态，不代表当前安装情况。2026-10-30 教程另有 iOS 27.0 模拟器的实际运行记录；iOS 18.6 和 27.0 的观察均不能替代 27.1 验证。
 
 任务产物已具备核心正文、可运行工程、操作说明和实际截图。工程验证按上表限定。学习掌握仍需学习者解释版本和工程关系、预测修改影响并独立操作，不能由生成文件代为确认。
 
 ## 参考与后续入口
 
-- [iOS 01：平台机制与工程判断](../../docs/ios/01-engineering-foundations.md)
+- [iOS 07：平台机制与工程判断](../../docs/ios/07-engineering-foundations.md)
 - [开发环境与工具配置](codex-setup.md)
 - [Apple：Adding package dependencies to your app](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app)
 - [Apple：Stepping through code and inspecting variables to isolate bugs](https://developer.apple.com/documentation/xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs)

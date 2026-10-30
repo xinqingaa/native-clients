@@ -1,0 +1,84 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:native-clients}/swift-core",
+            "name": "Debug BasicsDemo (swift-core)",
+            "target": "BasicsDemo",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug BasicsDemo (swift-core)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:native-clients}/swift-core",
+            "name": "Release BasicsDemo (swift-core)",
+            "target": "BasicsDemo",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release BasicsDemo (swift-core)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:native-clients}/swift-core",
+            "name": "Debug RunLoopDemo (swift-core)",
+            "target": "RunLoopDemo",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug RunLoopDemo (swift-core)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:native-clients}/swift-core",
+            "name": "Release RunLoopDemo (swift-core)",
+            "target": "RunLoopDemo",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release RunLoopDemo (swift-core)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:native-clients}/swift-core",
+            "name": "Debug LanguageFeaturesDemo (swift-core)",
+            "target": "LanguageFeaturesDemo",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug LanguageFeaturesDemo (swift-core)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:native-clients}/swift-core",
+            "name": "Release LanguageFeaturesDemo (swift-core)",
+            "target": "LanguageFeaturesDemo",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release LanguageFeaturesDemo (swift-core)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:native-clients}/swift-core",
+            "name": "Debug ConcurrencyDemo (swift-core)",
+            "target": "ConcurrencyDemo",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug ConcurrencyDemo (swift-core)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:native-clients}/swift-core",
+            "name": "Release ConcurrencyDemo (swift-core)",
+            "target": "ConcurrencyDemo",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release ConcurrencyDemo (swift-core)"
+        }
+    ]
+}

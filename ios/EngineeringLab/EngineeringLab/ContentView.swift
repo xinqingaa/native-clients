@@ -1,6 +1,10 @@
 import BuildLessonKit
 import SwiftUI
 
+// struct 定义一个值类型
+// View 表示 SwiftUI 页面描述
+// body 返回页面内容
+// #Preview 为 Xcode 预览提供输入
 struct ContentView: View {
     @State private var summary = "尚未生成"
 
@@ -22,7 +26,7 @@ struct ContentView: View {
                     }
                 }
             }
-            .navigationTitle("工程基础实验")
+            .navigationTitle("工程基础实验学习")
         }
     }
 }
