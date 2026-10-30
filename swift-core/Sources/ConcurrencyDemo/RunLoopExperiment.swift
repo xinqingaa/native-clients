@@ -10,9 +10,8 @@ final class Probe: Sendable {
     func read() -> Int { storage.withLock { $0 } }
 }
 
-@main
-struct RunLoopDemo {
-    static func main() {
+enum RunLoopExperiment {
+    static func run() {
         guard #available(macOS 15.0, *) else {
             print("本实验的Mutex存储要求macOS 15或更高版本")
             return
@@ -23,7 +22,8 @@ struct RunLoopDemo {
     @available(macOS 15.0, *)
     private static func runExperiment() {
         let probe = Probe()
-        let timer = Timer(timeInterval: 0.01, repeats: false) { _ in
+        // 注册前就已到期，排除“其他 mode 下没触发只是尚未到期”的解释。
+        let timer = Timer(fire: Date(timeIntervalSinceNow: -1), interval: 0, repeats: false) { _ in
             probe.record()
             print("Timer：回调执行")
         }

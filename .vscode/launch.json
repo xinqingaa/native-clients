@@ -5,60 +5,80 @@
             "request": "launch",
             "args": [],
             "cwd": "${workspaceFolder:native-clients}/swift-core",
-            "name": "Debug BasicsDemo (swift-core)",
-            "target": "BasicsDemo",
+            "name": "Debug ValuesDemo (swift-core)",
+            "target": "ValuesDemo",
             "configuration": "debug",
-            "preLaunchTask": "swift: Build Debug BasicsDemo (swift-core)"
+            "preLaunchTask": "swift: Build Debug ValuesDemo (swift-core)"
         },
         {
             "type": "swift",
             "request": "launch",
             "args": [],
             "cwd": "${workspaceFolder:native-clients}/swift-core",
-            "name": "Release BasicsDemo (swift-core)",
-            "target": "BasicsDemo",
+            "name": "Release ValuesDemo (swift-core)",
+            "target": "ValuesDemo",
             "configuration": "release",
-            "preLaunchTask": "swift: Build Release BasicsDemo (swift-core)"
+            "preLaunchTask": "swift: Build Release ValuesDemo (swift-core)"
         },
         {
             "type": "swift",
             "request": "launch",
             "args": [],
             "cwd": "${workspaceFolder:native-clients}/swift-core",
-            "name": "Debug RunLoopDemo (swift-core)",
-            "target": "RunLoopDemo",
+            "name": "Debug ModelingDemo (swift-core)",
+            "target": "ModelingDemo",
             "configuration": "debug",
-            "preLaunchTask": "swift: Build Debug RunLoopDemo (swift-core)"
+            "preLaunchTask": "swift: Build Debug ModelingDemo (swift-core)"
         },
         {
             "type": "swift",
             "request": "launch",
             "args": [],
             "cwd": "${workspaceFolder:native-clients}/swift-core",
-            "name": "Release RunLoopDemo (swift-core)",
-            "target": "RunLoopDemo",
+            "name": "Release ModelingDemo (swift-core)",
+            "target": "ModelingDemo",
             "configuration": "release",
-            "preLaunchTask": "swift: Build Release RunLoopDemo (swift-core)"
+            "preLaunchTask": "swift: Build Release ModelingDemo (swift-core)"
         },
         {
             "type": "swift",
             "request": "launch",
             "args": [],
             "cwd": "${workspaceFolder:native-clients}/swift-core",
-            "name": "Debug LanguageFeaturesDemo (swift-core)",
-            "target": "LanguageFeaturesDemo",
+            "name": "Debug ProtocolsDemo (swift-core)",
+            "target": "ProtocolsDemo",
             "configuration": "debug",
-            "preLaunchTask": "swift: Build Debug LanguageFeaturesDemo (swift-core)"
+            "preLaunchTask": "swift: Build Debug ProtocolsDemo (swift-core)"
         },
         {
             "type": "swift",
             "request": "launch",
             "args": [],
             "cwd": "${workspaceFolder:native-clients}/swift-core",
-            "name": "Release LanguageFeaturesDemo (swift-core)",
-            "target": "LanguageFeaturesDemo",
+            "name": "Release ProtocolsDemo (swift-core)",
+            "target": "ProtocolsDemo",
             "configuration": "release",
-            "preLaunchTask": "swift: Build Release LanguageFeaturesDemo (swift-core)"
+            "preLaunchTask": "swift: Build Release ProtocolsDemo (swift-core)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:native-clients}/swift-core",
+            "name": "Debug MemoryDemo (swift-core)",
+            "target": "MemoryDemo",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug MemoryDemo (swift-core)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:native-clients}/swift-core",
+            "name": "Release MemoryDemo (swift-core)",
+            "target": "MemoryDemo",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release MemoryDemo (swift-core)"
         },
         {
             "type": "swift",

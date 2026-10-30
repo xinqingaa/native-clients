@@ -1,6 +1,6 @@
 # Xcode 使用与调试：EngineeringLab
 
-你已经能运行 EngineeringLab，现在要学会让 Xcode 回答三个具体问题：我改的代码怎样生效，按钮到底执行到哪里，结果与预期不同时从哪里看证据。本文全程使用仓库中的同一个工程，不要求另建 App；系统语言基础见 [Swift 基础单元](../../swift-core/docs/02-basics-and-functions.md)，完整构建机制见 [iOS 07](../../docs/ios/07-engineering-foundations.md)。
+你已经能运行 EngineeringLab，现在要学会让 Xcode 回答三个具体问题：我改的代码怎样生效，按钮到底执行到哪里，结果与预期不同时从哪里看证据。本文全程使用仓库中的同一个工程，不要求另建 App；系统语言基础见 [Swift 类型与数据处理实验](../../swift-core/docs/01-values-and-data.md)，完整构建机制见 [iOS 07](../../docs/ios/07-engineering-foundations.md)。
 
 先按顺序做一次“打开工程 → 运行 → 找到按钮日志 → 命中断点 → 进入函数 → 返回并继续”。后面的 Preview、配置切换和归档入口按需要查阅，不必先掌握所有菜单。
 

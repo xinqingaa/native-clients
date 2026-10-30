@@ -8,7 +8,7 @@
 
 - [Xcode 使用与调试：EngineeringLab](project-started.md)：直接打开现有工程，认识窗口、运行、Preview、控制台、构建报告、断点、单步和配置切换。全程使用同一个 App。
 - [iOS 01：Swift 语言与运行机制](../../docs/ios/01-language-runtime-concurrency.md)：类型、空安全、内存、同步异步、线程、事件循环与并发；具体写法见 swift-core。
-- [Swift 基础实验](../../swift-core/docs/02-basics-and-functions.md)：在独立程序中练习具体语法。
+- [Swift 类型与数据处理实验](../../swift-core/docs/01-values-and-data.md)：在独立程序中练习具体语法。
 
 ## 工程基础实验
 
