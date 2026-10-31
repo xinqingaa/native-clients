@@ -16,7 +16,7 @@
 
 ## 目录结构
 
-主要目录如下，各目录通过自身的 README 提供入口。当前从 [iOS 01 Swift 语言特性、运行时与并发](docs/ios/01-language-runtime-concurrency.md)及 [Swift 实验目录](swift-core/docs/README.md)开始，可直接在终端运行语言示例。应用操作另见 [Xcode 使用与调试](ios/docs/project-started.md)，[EngineeringLab 工程基础实验](ios/docs/engineering-foundations.md)配合第 07 篇。
+主要目录如下，各目录通过自身的 README 提供入口。从 [iOS 01 Swift 语言特性、运行时与并发](docs/ios/01-language-runtime-concurrency.md)及 [Swift 实验目录](swift-core/docs/README.md)开始，可直接在终端运行语言示例。接着通过 [iOS 02 SwiftUI 页面、应用运行与生命周期](docs/ios/02-app-lifecycle.md)与 EngineeringLab 理解页面声明、状态身份、前后台与内存。应用操作见 [Xcode 使用与调试](ios/docs/project-started.md)，[EngineeringLab 工程基础实验](ios/docs/engineering-foundations.md)配合第 07 篇。
 
 ```text
 native-clients/
