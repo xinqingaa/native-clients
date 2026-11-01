@@ -38,7 +38,7 @@ struct EngineeringLabApp: App {
 }
 ```
 
-App 的 body 提供 Scene，WindowGroup 的内容提供根 View。打开 [LabRootView.swift](../EngineeringLab/EngineeringLab/ApplicationLab/LabRootView.swift)，可以看到根内容用 TabView 组织两组实验；“工程基础”继续呈现原 ContentView，“应用与生命周期”呈现 ApplicationLabView。
+App 的 body 提供 Scene，WindowGroup 的内容提供根 View。打开 [LabRootView.swift](../EngineeringLab/EngineeringLab/ApplicationLab/LabRootView.swift)，可以看到根内容用 TabView 组织实验；“工程基础”继续呈现原 ContentView，“应用与生命周期”呈现 ApplicationLabView，第三章新增的“UI 与交互”呈现 UILabView。
 
 App 层没有建立条目模型，模型由每份 ApplicationLabView 的 State 保留。这使第二章各页面共享当前窗口的模型，而不是默认共享一个全局对象。
 

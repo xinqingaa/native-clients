@@ -9,6 +9,9 @@ struct LabRootView: View {
             Tab("应用与生命周期", systemImage: "app.connected.to.app.below.fill") {
                 ApplicationLabView()
             }
+            Tab("UI 与交互", systemImage: "rectangle.3.group") {
+                UILabView()
+            }
         }
     }
 }

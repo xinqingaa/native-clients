@@ -48,6 +48,8 @@ native-clients/
         └── docs/
 ```
 
+继续阅读 [iOS 03 SwiftUI 更新、布局、渲染与交互](docs/ios/03-ui-rendering-interaction.md)，通过 EngineeringLab 的“UI 与交互”入口依次学习状态更新、布局绘制、输入动画、导航呈现与动态适配。配套入口见 [第三章运行与阅读说明](ios/docs/swiftui-ui-lab.md)。
+
 ## 目录入口
 
 | 目录 | 职责 |

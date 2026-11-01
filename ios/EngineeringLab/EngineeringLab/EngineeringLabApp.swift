@@ -11,7 +11,7 @@ import SwiftUI
 // App 对象遵循的协议
 // body 应用提供的 Scene
 // WindowGroup 提供一组窗口的根内容
-// LabRootView() 根内容，提供两组实验入口
+// LabRootView() 根内容，提供工程、生命周期和 UI 实验入口
 @main
 struct EngineeringLabApp: App {
     var body: some Scene {

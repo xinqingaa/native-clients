@@ -18,6 +18,16 @@
 - [生命周期与任务](lifecycle-and-tasks.md)：Scene 与页面事件、视图关联任务、手动任务、取消和前后台观察。
 - [对象内存与进程恢复](state-restoration.md)：State 的强引用、额外持有与 deinit，任务持有，以及场景状态和保存数据的重启对照。
 
+## 第三章配套实验
+
+五组实验共用 EngineeringLab 的“UI 与交互”标签，通过“切换实验”菜单进入，默认从更新与列表开始。正文见 [iOS 03](../../docs/ios/03-ui-rendering-interaction.md)，阅读顺序、通用构建命令与模型检查见[第三章运行与阅读入口](swiftui-ui-lab.md)。
+
+- [依赖更新、列表身份与滚动目标](swiftui-updates-and-lists.md)：局部状态与绑定、读取位置、行身份与存续、普通与按需内容、目标滚动。
+- [布局协商、显示变换与绘制](swiftui-layout-and-drawing.md)：尺寸传递、空间竞争、modifier 顺序、占位与命中、自定义 Layout、Shape/Canvas、语言与主题。
+- [输入、手势与动画反馈](swiftui-input-and-animation.md)：文本与焦点、临时拖动与滚动竞争、属性动画与 transition、Transaction 和自定义插值。
+- [导航、路由与呈现协调](swiftui-navigation-and-presentation.md)：系统链接、类型化路径与多级返回、基础模态，再组合独立路径、编辑会话与关闭后跳转。
+- [动态布局与 iPhone Duo](swiftui-adaptive-layout.md)：容器空间、候选布局、AnyLayout 与分支身份、分栏草稿，以及独立全屏的区域与 ArrangementView。
+
 ## 工程基础实验
 
 - [EngineeringLab｜工程基础实验](engineering-foundations.md)：配合 [iOS 07](../../docs/ios/07-engineering-foundations.md)检查工程模型、依赖、资源、配置、增量与故障。日志和断点的通用操作只在 Xcode 教程维护。

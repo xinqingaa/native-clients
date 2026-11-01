@@ -6,7 +6,7 @@
 
 本文界面基准是用户于 2026-10-30 提供的 EngineeringLab 截图，新增调试截图来自同日 Xcode 27.1 的实际操作。代码行号会随编辑变化，定位时以文件名和语句为准。历史工程截图与当前截图的设备和布局可能不同，每张图的说明分别标明用途。
 
-第二章扩展后，App 增加两个标签。本文的摘要按钮和断点练习继续在默认的“工程基础”标签完成；“应用与生命周期”标签的源码与操作见[第二章页面实验](swiftui-pages-and-state.md)。下方历史截图不包含新增标签栏，原按钮和调用路径保持原行为。
+App 当前通过“工程基础”“应用与生命周期”和“UI 与交互”三个标签组织实验。本文的摘要按钮和断点练习继续在默认的“工程基础”标签完成；其他标签的源码与操作分别见[第二章页面实验](swiftui-pages-and-state.md)和[第三章运行与阅读入口](swiftui-ui-lab.md)。下方历史截图不包含新增标签栏，原按钮和调用路径保持原行为。
 
 ## 打开现有工程并认清窗口
 
@@ -37,7 +37,7 @@
 | 左侧路径 | 实际文件 | 本次用途 |
 | --- | --- | --- |
 | EngineeringLab → EngineeringLab → EngineeringLabApp | [EngineeringLabApp.swift](../EngineeringLab/EngineeringLab/EngineeringLabApp.swift) | `@main` 应用入口、WindowGroup，根内容为 LabRootView |
-| 同目录 → ApplicationLab → LabRootView | [LabRootView.swift](../EngineeringLab/EngineeringLab/ApplicationLab/LabRootView.swift) | 两个标签的入口；工程基础标签仍呈现 ContentView |
+| 同目录 → ApplicationLab → LabRootView | [LabRootView.swift](../EngineeringLab/EngineeringLab/ApplicationLab/LabRootView.swift) | 三个实验标签的入口；工程基础标签仍呈现 ContentView |
 | 同目录 → ContentView | [ContentView.swift](../EngineeringLab/EngineeringLab/ContentView.swift) | 摘要状态、按钮和日志 |
 | 同目录 → BuildIdentity | [BuildIdentity.swift](../EngineeringLab/EngineeringLab/BuildIdentity.swift) | 编译条件、业务环境和资源读取 |
 | 同目录 → Info / LessonNote | [Info.plist](../EngineeringLab/EngineeringLab/Info.plist)、[LessonNote.txt](../EngineeringLab/EngineeringLab/LessonNote.txt) | 配置和普通资源 |
