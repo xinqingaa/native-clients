@@ -10,7 +10,7 @@ AI 工具用于资料核验、解释、实现与验证，投入随原生客户�
 | --- | --- | --- |
 | Xcode、Swift 与 iOS Simulator | iOS 应用开发、运行与调试 | [iOS 开发环境](../../swift-app/docs/codex-setup.md#安装与选择-xcode) |
 | Android Studio、JDK、SDK 与 Emulator | Android 应用开发、运行与调试 | [Android 开发环境](../../kotlin-app/docs/codex-setup.md#安装-android-studio-与-sdk) |
-| Node.js | 运行产品原型与共享 mock | [Node 环境准备](../services/docs/README.md#nodejs-环境准备) |
+| Node.js | 运行共享 mock 服务 | [Node 环境准备](../services/docs/README.md#nodejs-环境准备) |
 | Apple skills、Android skills 插件 | 需要相关原生开发指导时 | 对应平台配置文档 |
 | Xcode MCP、可用的 Android IDE MCP | 希望 Codex 通过运行中的 IDE 查询、构建或测试时 | 对应平台配置文档 |
 

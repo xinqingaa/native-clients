@@ -18,14 +18,7 @@
 | [Kotlin App 文档](kotlin-app/README.md) | Android 环境与 Codex 配置；Studio 使用文档后续补充 |
 | [知识索引](docs/README.md) | 保留的正文与九个能力域，按实际问题回查 |
 
-体验原型需要 Node.js 22 或更新版本，在仓库根目录执行：
-
-```bash
-npm --prefix shared/services ci
-npm --prefix shared/services start
-```
-
-打开 <http://127.0.0.1:4317>。服务配置、重置和测试见[服务说明](shared/services/README.md)。
+原型的打开方式、预览范围与验证记录统一见[原型说明](prototype/README.md)。原生业务接口的启动、配置和检查见[共享服务](shared/services/README.md)。
 
 ## 已有经验与学习目标
 
@@ -52,7 +45,7 @@ native-clients/
 ├── WORKFLOW.md
 ├── docs/
 │   ├── product.md             # 产品草案
-│   ├── architecture.md        # 架构方案与实现状态
+│   ├── architecture.md        # 原生双端架构方案
 │   ├── ios/                   # 保留的 iOS 知识正文
 │   └── android/               # 保留的 Android 知识正文
 ├── prototype/                 # HTML 交互原型

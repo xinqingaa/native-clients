@@ -11,7 +11,7 @@
 
 - [产品草案](../docs/product.md)与[交互原型](../prototype/README.md)：等待评估，可调整。
 - [架构方案](../docs/architecture.md)：双端职责和状态、资源建议，尚未在原生端实现。
-- [接口方案](../shared/services/docs/api.md)与[共享服务](../shared/services/README.md)：当前原型使用的 mock。
+- [接口方案](../shared/services/docs/api.md)与[共享服务](../shared/services/README.md)：业务契约与模拟数据。
 - [iOS 知识正文](../docs/ios/README.md)：已有机制参考，后续结合实际应用补充。
 
 原生工程建立时再确定工具链、最低系统、依赖、源码布局和运行方式。通用教程中的示例与历史截图不代表仓库已有应用，也不作为新工程已构建或已运行的证据。

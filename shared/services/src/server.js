@@ -63,7 +63,7 @@ export function createStockServer({ stateFile = null, autoTick = true, now } = {
     try {
       const url = new URL(request.url, 'http://localhost'); const path = url.pathname;
       if (!path.startsWith('/api/')) {
-        const assets = { '/': ['index.html', 'text/html'], '/index.html': ['index.html', 'text/html'], '/styles.css': ['styles.css', 'text/css'], '/app.js': ['app.js', 'text/javascript'] };
+        const assets = { '/': ['index.html', 'text/html'], '/index.html': ['index.html', 'text/html'] };
         if (request.method !== 'GET' || !assets[path]) { response.writeHead(404); response.end('Not found'); return; }
         const [name, type] = assets[path]; const contents = await readFile(resolve(prototypeRoot, name));
         response.writeHead(200, { 'Content-Type': `${type}; charset=utf-8`, 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' }); response.end(contents); return;
