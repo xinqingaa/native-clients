@@ -1,6 +1,6 @@
 # Codex 手动安装与配置入口
 
-本文组织本项目共用的 Codex 配置，平台工具的具体操作分别见 [iOS 配置](../../ios/docs/codex-setup.md)与 [Android 配置](../../android/docs/codex-setup.md)。安装和本机配置由学习者手动执行，文中的命令用于操作指导；正文更新不代表这些操作已经执行。
+本文组织本项目共用的 Codex 配置，平台工具的具体操作分别见 [iOS 配置](../../swift-app/docs/codex-setup.md)与 [Android 配置](../../kotlin-app/docs/codex-setup.md)。安装和本机配置由学习者手动执行，文中的命令用于操作指导；正文更新不代表这些操作已经执行。
 
 AI 工具用于资料核验、解释、实现与验证，投入随原生客户端学习需要确定。仓库的 AGENTS 维护长期协作规则，SPEC 维护成果标准，WORKFLOW 维护执行过程；skills 承载按任务使用的指导，MCP 提供外部工具与信息访问，编译和运行仍需要对应的平台工具链。
 
@@ -8,9 +8,9 @@ AI 工具用于资料核验、解释、实现与验证，投入随原生客户�
 
 | 工具 | 何时需要 | 手动配置入口 |
 | --- | --- | --- |
-| Xcode、Swift 与 iOS Simulator | Swift 语言实验、iOS 应用运行与调试 | [iOS 开发环境](../../ios/docs/codex-setup.md#安装与选择-xcode) |
-| Android Studio、JDK、SDK 与 Emulator | Kotlin/JVM 实验、Android 应用运行与调试 | [Android 开发环境](../../android/docs/codex-setup.md#安装-android-studio-与-sdk) |
-| Node.js | 开展共享 mock 服务实验 | [Node 环境准备](../services/docs/README.md#nodejs-环境准备) |
+| Xcode、Swift 与 iOS Simulator | iOS 应用开发、运行与调试 | [iOS 开发环境](../../swift-app/docs/codex-setup.md#安装与选择-xcode) |
+| Android Studio、JDK、SDK 与 Emulator | Android 应用开发、运行与调试 | [Android 开发环境](../../kotlin-app/docs/codex-setup.md#安装-android-studio-与-sdk) |
+| Node.js | 运行产品原型与共享 mock | [Node 环境准备](../services/docs/README.md#nodejs-环境准备) |
 | Apple skills、Android skills 插件 | 需要相关原生开发指导时 | 对应平台配置文档 |
 | Xcode MCP、可用的 Android IDE MCP | 希望 Codex 通过运行中的 IDE 查询、构建或测试时 | 对应平台配置文档 |
 

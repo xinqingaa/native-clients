@@ -1,0 +1,21 @@
+{
+  "currency": "HKD",
+  "marketTimeOrigin": "2026-11-10T02:36:00.000Z",
+  "demo": { "email": "demo@harbor.app", "password": "Harbor2026!", "name": "林同学" },
+  "initialCash": "182680.50",
+  "instruments": [
+    { "id": "HK.00700", "symbol": "00700", "name": "腾讯控股", "englishName": "TENCENT", "sector": "互联网", "price": "428.60", "previousClose": "420.20", "lotSize": 100 },
+    { "id": "HK.09988", "symbol": "09988", "name": "阿里巴巴-W", "englishName": "BABA-W", "sector": "互联网", "price": "166.10", "previousClose": "162.50", "lotSize": 100 },
+    { "id": "HK.01810", "symbol": "01810", "name": "小米集团-W", "englishName": "XIAOMI-W", "sector": "科技", "price": "38.42", "previousClose": "38.96", "lotSize": 100 },
+    { "id": "HK.03690", "symbol": "03690", "name": "美团-W", "englishName": "MEITUAN-W", "sector": "互联网", "price": "102.50", "previousClose": "101.10", "lotSize": 100 },
+    { "id": "HK.00388", "symbol": "00388", "name": "香港交易所", "englishName": "HKEX", "sector": "金融", "price": "397.20", "previousClose": "399.60", "lotSize": 100 },
+    { "id": "HK.09618", "symbol": "09618", "name": "京东集团-SW", "englishName": "JD-SW", "sector": "互联网", "price": "122.40", "previousClose": "119.80", "lotSize": 100 },
+    { "id": "HK.09999", "symbol": "09999", "name": "网易-S", "englishName": "NETEASE-S", "sector": "互联网", "price": "183.80", "previousClose": "181.60", "lotSize": 100 },
+    { "id": "HK.00883", "symbol": "00883", "name": "中国海洋石油", "englishName": "CNOOC", "sector": "能源", "price": "23.54", "previousClose": "23.76", "lotSize": 100 }
+  ],
+  "positions": [
+    { "instrumentId": "HK.00700", "quantity": 200, "averageCost": "408.24" },
+    { "instrumentId": "HK.09988", "quantity": 300, "averageCost": "152.10" },
+    { "instrumentId": "HK.01810", "quantity": 1000, "averageCost": "36.81" }
+  ]
+}

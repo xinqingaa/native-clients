@@ -1,22 +1,48 @@
 # 原生客户端学习
 
-基于已有的 Flutter 复杂客户端开发经验，系统学习 Swift、Kotlin 与 iOS、Android 原生工程能力，支持跨端与原生结合的混合开发。技术主线为 Swift + SwiftUI、Kotlin + Jetpack Compose，学习围绕客户端的原理、机制、架构、实现与验证展开。
+基于已有的 Flutter 复杂客户端经验，通过两个独立的股票 App 学习 Swift、Kotlin 和原生平台。技术主线为 Swift + SwiftUI、Kotlin + Jetpack Compose，两个客户端使用 `shared/services` 的同一套 mock 接口。
 
-文档贯穿学习过程，应用工程、独立语言实验、图示和诊断产物为正文提供实现与验证依据。业务场景按当前问题选择，优先取材于已有 Flutter 实践。
+学习从完整应用建立上下文：先评估产品和交互方案，再实现原生 App，开发中持续调整需求；能够看到整体运行关系后，再从代码和实际问题反推知识正文、查漏补缺。AI 承担实现工作，学习重点是读懂代码、理解状态与数据流、判断方案及其边界。
 
-## 已有经验与学习起点
+## 当前状态与入口
 
-已有实践涉及实时数据与共享订阅、请求竞争与迟到结果、复杂导航和表单状态保留、K 线视口与高频更新、跨语言调用与资源所有权，以及缓存隔离、启动和构建发布。这些经历提供问题认识、工程约束和设计判断，原生实现与运行证据随本项目的学习逐步形成。
+当前已提供港股模拟交易的产品草案、可交互 HTML 原型与共享 mock。产品、交互和接口方案仍待学习者评估，可以继续调整。`swift-app/` 和 `kotlin-app/` 目前仅有文档，尚未创建原生应用工程。
 
-已有 JavaScript、Dart 等语言基础，理解常见语言概念。原生实践随实际需求穿插开展，借助 AI 可以编写代码，阅读原生代码也能理解大部分内容；Swift、Kotlin 的具体特性及原生平台机制仍需系统学习。
+| 入口 | 用途 |
+| --- | --- |
+| [产品方案](docs/product.md) | 登录注册、自选、行情、交易与账户闭环的产品草案 |
+| [交互原型](prototype/README.md) | 启动并评估界面、流程和模拟数据 |
+| [接口方案](shared/services/docs/api.md) | 当前 mock 的 HTTP、WebSocket、数据和交易语义 |
+| [架构方案](docs/architecture.md) | 后续双端建设的职责边界、状态和资源约定 |
+| [Swift App 文档](swift-app/README.md) | Xcode 基本使用与 iOS 环境、Codex 配置 |
+| [Kotlin App 文档](kotlin-app/README.md) | Android 环境与 Codex 配置；Studio 使用文档后续补充 |
+| [知识索引](docs/README.md) | 保留的正文与九个能力域，按实际问题回查 |
 
-本次学习从已有基础出发，重点建立各语言的特性、标准库、运行机制与原生客户端模型，再将这些认识用于跨端与原生协作。问题和业务要求可以相近，语言、内存、任务、UI 与宿主生命周期的语义需要分别说明和核验。
+体验原型需要 Node.js 22 或更新版本，在仓库根目录执行：
 
-必要背景直接描述在本项目中，各篇核心正文能够独立恢复主要理解，工程文档提供具体实现和验证入口。
+```bash
+npm --prefix shared/services ci
+npm --prefix shared/services start
+```
+
+打开 <http://127.0.0.1:4317>。服务配置、重置和测试见[服务说明](shared/services/README.md)。
+
+## 已有经验与学习目标
+
+已有 JavaScript、Dart 和 Flutter 基础，理解通用编程概念；实践涉及实时数据与共享订阅、请求竞争、导航和表单状态、K 线视口与高频更新、跨语言调用、资源所有权、缓存隔离以及构建发布。
+
+这些经验用于认识问题、提出约束和评估方案。Swift 与 Kotlin 的语言语义、内存、任务、UI 更新和宿主生命周期仍需分别理解，不能根据名称相近直接套用 Flutter 判断。目标是能够沿真实源码解释一次操作怎样改变状态、发起工作、接收结果并结束资源。
+
+## 推进方式
+
+1. 评估产品、原型和 mock，明确本次要实现或调整的行为。
+2. 在两个原生 App 中逐步完成登录、自选、行情、交易和账户闭环；实现次序随当前需求确定。
+3. 在开发中阅读代码、微调需求、定位问题，并执行与改动相称的验证。
+4. 完整应用形成后，从具体实现反推语言、平台和架构正文，沿知识索引查漏补缺；不必等全部功能结束才解决阻碍当前开发的机制问题。
+
+不提前铺写整套正文，不维护独立语言实验或配套实验文档。需求变化自然进入开发过程，不设置固定的条件变更练习或模拟面试关卡。WebView、额外权限、后台执行和 Flutter/RN 混合开发后续按需要补充；前台断线恢复仍属于行情与交易本身的行为。
 
 ## 目录结构
-
-主要目录如下，各目录通过自身的 README 提供入口。从 [iOS 01 Swift 语言特性、运行时与并发](docs/ios/01-language-runtime-concurrency.md)及 [Swift 实验目录](swift-core/docs/README.md)开始，可直接在终端运行语言示例。接着通过 [iOS 02 SwiftUI 页面、应用运行与生命周期](docs/ios/02-app-lifecycle.md)与 EngineeringLab 理解页面声明、状态身份、前后台与内存。应用操作见 [Xcode 使用与调试](ios/docs/project-started.md)，[EngineeringLab 工程基础实验](ios/docs/engineering-foundations.md)配合第 07 篇。
 
 ```text
 native-clients/
@@ -25,61 +51,22 @@ native-clients/
 ├── SPEC.md
 ├── WORKFLOW.md
 ├── docs/
-│   ├── README.md
-│   ├── ios/                   # iOS 九篇核心正文
-│   └── android/               # Android 九篇核心正文
-├── swift-core/                # 独立 Swift 语言实验
-│   ├── Sources/
-│   ├── Tests/
-│   └── docs/
-├── kotlin-core/               # 独立 Kotlin/JVM 语言实验
-│   ├── src/
-│   └── docs/
-├── ios/                       # Swift + SwiftUI 应用工程
-│   └── docs/
-├── android/                   # Kotlin + Compose 应用工程
-│   └── docs/
+│   ├── product.md             # 产品草案
+│   ├── architecture.md        # 架构方案与实现状态
+│   ├── ios/                   # 保留的 iOS 知识正文
+│   └── android/               # 保留的 Android 知识正文
+├── prototype/                 # HTML 交互原型
+├── swift-app/                 # 目前仅文档，后续承载 SwiftUI App
+├── kotlin-app/                # 目前仅文档，后续承载 Compose App
 └── shared/
-    ├── docs/                  # 共用工具的安装与配置说明
-    └── services/              # 共用 Node mock 服务
-        ├── src/
-        ├── fixtures/
-        ├── scenarios/
-        └── docs/
+    ├── docs/                  # 共用工具配置
+    └── services/              # 共享 Node mock
 ```
 
-继续阅读 [iOS 03 SwiftUI 更新、布局、渲染与交互](docs/ios/03-ui-rendering-interaction.md)，通过 EngineeringLab 的“UI 与交互”入口依次学习状态更新、布局绘制、输入动画、导航呈现与动态适配。配套入口见 [第三章运行与阅读说明](ios/docs/swiftui-ui-lab.md)。
+## 文档与协作
 
-## 目录入口
+产品规则由产品文档维护，接口与数据语义由共享服务文档维护；架构文档维护双端共同设计，各 App 的 README 提供工具与后续运行入口。工程说明随实际实现增加，必要操作、设计或验证就近记录，不要求每个功能都另写一篇文档。
 
-| 目录 | 职责 |
-| --- | --- |
-| [docs](docs/README.md) | 九个能力域的知识结构与双端核心正文 |
-| [swift-core](swift-core/README.md) | 独立 Swift 语言学习与机制实验 |
-| [kotlin-core](kotlin-core/README.md) | 独立 Kotlin/JVM 语言学习与机制实验 |
-| [ios](ios/README.md) | Swift + SwiftUI 应用工程及具体实现文档 |
-| [android](android/README.md) | Kotlin + Compose 应用工程及具体实现文档 |
-| [shared](shared/README.md) | 双端共用的工具配置、模拟服务与场景基础 |
+`docs/ios/` 与 `docs/android/` 的已有正文继续保留，作为参考与后续沉淀位置。九个能力域组织知识覆盖，不决定功能开发或阅读顺序。
 
-## 推进方式
-
-九个能力域保证知识覆盖，四个阶段控制学习深度。同一套正文随实验、实现和验证持续完善。
-
-1. **建立运行模型**：理解工程、构建、启动、页面、任务、状态更新与资源结束的完整链路。
-2. **掌握核心机制**：从完整问题出发，深入语言运行时、并发、生命周期、UI、状态和数据，核对已有判断在原生环境中的成立条件。
-3. **形成架构与平台能力**：组合代表性场景，处理模块协作、依赖、共享资源、系统能力与互操作。
-4. **深化诊断与交付**：固定运行条件，通过性能分析、故障验证、测试和构建产物核对工程判断与实际效果。
-
-语言主题通过特性介绍与独立实验建立理解；应用主题从具体问题进入平台机制与设计判断，通过实现和运行核对结论。网络与服务端行为统一由 [Node mock 服务](shared/services/README.md)模拟；系统生命周期与平台行为在对应运行环境中验证。
-
-## 文档分工
-
-根目录 `docs/` 解释语言特性、平台机制、架构判断、取舍与重要边界。语言工程的 `docs/` 维护具体写法、示例代码与独立实验，应用工程的 `docs/` 维护当前实现设计、配置、源码入口、运行步骤和实际验证结果。具体内容归属见 [核心知识入口](docs/README.md)，编写规则见 [AGENTS](AGENTS.md)。
-
-## 协作与成果约定
-
-| 文档 | 职责 |
-| --- | --- |
-| [SPEC](SPEC.md) | 定义学习单元、成果形式与完成依据 |
-| [WORKFLOW](WORKFLOW.md) | 说明学习任务从问题到验证和沉淀的推进过程 |
-| [AGENTS](AGENTS.md) | 规定资料核验、写作、实现、验证和编辑的长期规则 |
+[SPEC](SPEC.md)定义成果和完成依据，[WORKFLOW](WORKFLOW.md)说明推进过程，[AGENTS](AGENTS.md)维护长期协作规则。代码生成、工程运行和学习理解分别判断。
