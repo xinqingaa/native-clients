@@ -12,6 +12,7 @@
 | --- | --- |
 | [产品方案](docs/product.md) | 登录注册、自选、行情、交易与账户闭环的产品草案 |
 | [交互原型](prototype/README.md) | 启动并评估界面、流程和模拟数据 |
+| [设计语言](docs/design.md) | 双端共同的视觉原则、设计 Token 与组件归类 |
 | [接口方案](shared/services/docs/api.md) | 当前 mock 的 HTTP、WebSocket、数据和交易语义 |
 | [架构方案](docs/architecture.md) | 后续双端建设的职责边界、状态和资源约定 |
 | [Swift App 文档](swift-app/README.md) | Xcode 基本使用与 iOS 环境、Codex 配置 |

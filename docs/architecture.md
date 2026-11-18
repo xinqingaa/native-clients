@@ -1,6 +1,6 @@
 # 双端股票 App 架构方案
 
-本文件维护后续 SwiftUI 与 Compose 股票 App 的共同设计。当前产品、原型和接口方案仍待学习者评估；这些内容是建设建议，尚未在原生端实现。业务行为以[产品草案](product.md)为归属，HTTP、WebSocket 和字段定义见[接口方案](../shared/services/docs/api.md)，避免在此复制完整契约。
+本文件维护后续 iOS（Swift + SwiftUI）与 Android（Kotlin，View/XML 为主、Compose 为辅）股票 App 的共同设计。当前产品、原型和接口方案仍待学习者评估；这些内容是建设建议，尚未在原生端实现。业务行为以[产品草案](product.md)为归属，视觉与交互语义见[设计语言](design.md)，HTTP、WebSocket 和字段定义见[接口方案](../shared/services/docs/api.md)，避免在此复制完整契约。
 
 ## 工程与共享边界
 
@@ -11,7 +11,8 @@
 | 证券身份、字段和金额语义 | Swift/Kotlin 数据类型与解码 |
 | 登录、交易、自选规则 | 平台会话存储、状态和交互反馈 |
 | HTTP、WebSocket、版本与错误含义 | 网络调用、任务取消、连接和订阅管理 |
-| 用户流程与关键验收行为 | SwiftUI/Compose 页面、导航和生命周期协作 |
+| 用户流程与关键验收行为 | SwiftUI 页面；Android View 与 Compose 页面、导航和生命周期协作 |
+| 设计 Token 与组件归类 | SwiftUI 颜色与字体扩展；Android XML 资源及 Compose 主题桥接 |
 
 不引入跨语言业务运行时或共享 UI 框架。两端可以围绕同一功能先后推进，但不要求目录、类名和框架 API 一一对应。
 
@@ -27,7 +28,7 @@ flowchart LR
     M --> D
     D --> V[校验身份、版本与当前任务]
     V --> S
-    S --> UI[SwiftUI 或 Compose 界面]
+    S --> UI[SwiftUI / View / Compose 界面]
 ```
 
 页面表达状态并接收操作，功能状态组织请求与反馈，数据访问负责传输和协议解码。金额、业务错误和订单状态不由视图根据展示文字反推。具体采用哪些状态类型、仓库接口或平台容器，在实现时按复杂度确定。
@@ -64,9 +65,40 @@ flowchart LR
 
 金额与价格使用十进制字符串传输，数量使用整数；原生实现选择十进制或整数最小单位处理业务金额，展示格式化与计算分开。模拟佣金、每手数量和撮合规则由产品及接口文档维护，不冒充真实交易所规则。
 
-## 平台差异与工具
+## 各端技术栈
 
-SwiftUI 与 Compose 分别使用适当的状态、任务和导航能力，不机械映射 Flutter、Task、协程或页面生命周期。登录凭据使用各平台合适的存储方式，凭据的具体存储方式在各端实现时确定。
+### iOS：Swift + SwiftUI
+
+iOS 端以 SwiftUI 为主体，系统能力不足时再按需接入 UIKit。一级导航优先使用系统 TabView，由系统提供浮动、材质和选中态；只有系统形态无法满足[设计语言](design.md)中“纯图标、选中项亮色圆角”的语义时才自绘。系统 TabView 在不同 iOS 版本上的外观不同，需要在实际部署版本的模拟器和真机上确认，原型效果不代表系统实现。
+
+### Android：View 为主，Compose 为辅
+
+Android 端以 Kotlin + XML 布局（View 体系）为主体，选取少数页面使用 Jetpack Compose，在同一工程中互操作。这样安排有两个用意：View 体系仍是大量存量工程的现实，需要掌握 Fragment、RecyclerView 和自定义 View；同时，混合工程中两套 UI 怎样共享状态、生命周期和主题，本身就是需要理解的工程问题。
+
+页面划分是建设建议，实现时可按实际复杂度调整：
+
+| 页面 | 实现方式 | 选择理由 |
+| --- | --- | --- |
+| 应用外壳与一级导航 | 单 Activity + Fragment，自定义浮动导航 View | 理解 Fragment 生命周期、每个入口的独立返回栈 |
+| 自选、搜索、自选管理 | RecyclerView + ListAdapter/DiffUtil，ItemTouchHelper 拖拽 | 高频报价的局部刷新与拖拽重排 |
+| 市场、账户 | RecyclerView 多类型条目 | 卡片与平铺行混排、局部更新 |
+| 个股详情 | View 页面 + 自定义 K 线 View（Canvas 绘制） | 手势、绘制和高频更新是重点 |
+| 交易弹层（填写、核对、回执） | BottomSheetDialogFragment 内承载 ComposeView | 表单状态、倒计时和步骤切换适合声明式表达 |
+| 订单详情时间线、设置与规则 | Fragment 内承载 ComposeView | 结构简单，用于练习互操作与主题共享 |
+
+互操作约定：
+
+- **导航统一归 Fragment。** Compose 页面同样作为 Fragment 目的地，由同一套 Fragment 导航管理；第一版不同时引入 Navigation Compose，避免出现两套返回栈。
+- **状态出口统一。** ViewModel 通过 StateFlow 暴露页面状态，View 侧在生命周期至少 STARTED 时收集，Compose 侧使用带生命周期感知的收集方式。跨页面共享的业务状态不放进 Composable 的局部状态。
+- **组合随宿主结束。** Fragment 中的 ComposeView 需要设置与 Fragment 视图生命周期一致的组合释放策略（官方互操作文档推荐 DisposeOnViewTreeLifecycleDestroyed），具体默认行为在建立工程时按所用 Compose 版本核对。
+- **主题只有一个来源。** 颜色 Token 以 XML 资源（values 与 values-night）为唯一来源，View 主题与 Compose 主题都从同一组资源读取；深色模式通过 DayNight 主题跟随系统或由设置覆盖。涨跌色是运行时用户偏好，由偏好存储提供，两种 UI 读取同一数据源，不各自维护。
+- **不在单行混用。** 第一版不在 RecyclerView 条目内嵌 ComposeView，混用的边界停留在页面或弹层层级。
+
+代价与边界：两套 UI 意味着两种调试、测试和性能观察方式；Compose 页面首次进入有组合初始化成本，是否影响体验需要在设备上实测，不预设结论。网络、存储和业务数据层与 UI 技术无关，View 与 Compose 页面共用同一套 ViewModel 和仓库。
+
+### 共同注意事项
+
+两端分别使用适当的状态、任务和导航能力，不机械映射 Flutter、Task、协程或页面生命周期。登录凭据使用各平台合适的存储方式，具体方式在各端实现时确定。外观偏好（主题与涨跌色）只保存在本机，不随账户同步。
 
 服务默认监听本机回环地址。未来 iOS Simulator、Android Emulator 和真机需要分别确定可达地址、网络配置及本地 HTTP 的开发范围，需要分别验证请求和连接行为。
 
