@@ -1,6 +1,6 @@
 # 原生客户端学习
 
-基于已有的 Flutter 复杂客户端经验，通过两个独立的股票 App 学习 Swift、Kotlin 和原生平台。技术主线为 Swift + SwiftUI、Kotlin + Jetpack Compose，两个客户端使用 `shared/services` 的同一套 mock 接口。
+基于已有的 Flutter 复杂客户端经验，通过两个独立的股票 App 学习 Swift、Kotlin 和原生平台。技术主线为 Swift + SwiftUI；Kotlin 以 View/XML 为主、Jetpack Compose 为辅，两个客户端使用 `shared/services` 的同一套 mock 接口。
 
 学习从完整应用建立上下文：先评估产品和交互方案，再实现原生 App，开发中持续调整需求；能够看到整体运行关系后，再从代码和实际问题反推知识正文、查漏补缺。AI 承担实现工作，学习重点是读懂代码、理解状态与数据流、判断方案及其边界。
 
@@ -51,7 +51,7 @@ native-clients/
 │   └── android/               # 保留的 Android 知识正文
 ├── prototype/                 # HTML 交互原型
 ├── swift-app/                 # 目前仅文档，后续承载 SwiftUI App
-├── kotlin-app/                # 目前仅文档，后续承载 Compose App
+├── kotlin-app/                # 目前仅文档，后续承载 View + Compose App
 └── shared/
     ├── docs/                  # 共用工具配置
     └── services/              # 共享 Node mock

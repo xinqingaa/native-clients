@@ -1,6 +1,6 @@
 # Kotlin App 文档
 
-本目录是后续 Kotlin + Jetpack Compose 港股模拟交易 App 的归属，目前仅维护准备文档，没有 Gradle 工程、应用源码或构建入口。先评估产品和原型，再根据确认后的范围建立原生工程。
+本目录是后续 Kotlin 港股模拟交易 App 的归属，界面以 View/XML 为主、少数页面使用 Jetpack Compose，页面划分与互操作约定见[架构方案](../docs/architecture.md)中的 Android 技术栈一节。目前仅维护准备文档，没有 Gradle 工程、应用源码或构建入口。先评估产品和原型，再根据确认后的范围建立原生工程。
 
 ## 工具入口
 
@@ -11,7 +11,7 @@ Android Studio 基本使用文档由学习者后续补充，目前没有对应�
 ## 方案与知识
 
 - [产品草案](../docs/product.md)与[交互原型](../prototype/README.md)：等待评估，可调整。
-- [架构方案](../docs/architecture.md)：双端职责和状态、资源建议，尚未在原生端实现。
+- [架构方案](../docs/architecture.md)：双端职责、Android View 与 Compose 的分工和状态、资源建议，尚未在原生端实现。
 - [接口方案](../shared/services/docs/api.md)与[共享服务](../shared/services/README.md)：业务契约与模拟数据。
 - [Android 知识正文](../docs/android/README.md)：保留已有 Kotlin 正文与知识规划。
 

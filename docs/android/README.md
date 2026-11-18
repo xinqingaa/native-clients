@@ -1,6 +1,6 @@
 # Android 知识正文
 
-按[九个能力域与详细大纲](../README.md#九篇核心正文大纲)组织 Android 机制与架构参考，主线为 Kotlin + Jetpack Compose，必要时再补充 View 协作。内容较重的能力域保留 16 篇规划，编号用于知识归类。
+按[九个能力域与详细大纲](../README.md#九篇核心正文大纲)组织 Android 机制与架构参考，主线与股票 App 一致：Kotlin + View 体系为主，Jetpack Compose 为辅，两者的嵌入与生命周期协作是重点之一。内容较重的能力域保留 16 篇规划，编号用于知识归类。
 
 ## 使用方式
 
